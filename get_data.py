@@ -10,7 +10,7 @@ import os
 
 def get_data():
     '''
-    :return: 返回的是图片文件名
+    :return: 返回的是图片文件名的list
     '''
     X=[]
     Y=[]
@@ -20,7 +20,7 @@ def get_data():
     for folder in os.listdir(data_path):
         name_index[i]=folder
         file_names=os.listdir(os.path.join(data_path,folder))
-        X+=file_names
+        X+=[os.path.join(data_path,folder,i) for i in file_names]
         Y+=[i]*len(file_names)
         i += 1
     x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size=0.4, stratify=Y)
